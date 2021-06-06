@@ -21,6 +21,7 @@ public class JavaData {
         //数据操作
         dataOperation();
         //类型转换
+        dataChange();
     }
 
     public static void dataOperation()
@@ -32,6 +33,14 @@ public class JavaData {
 
     public static void dataChange()
     {
+        int num = (getNum(10) > getNum(10)) ? 1 : 2;
+        System.out.println(num);
+    }
 
+    public static int getNum(int param)
+    {
+        int num = 10;
+        int num1 = 20;
+        return param > 10 ? num : num1;
     }
 }
