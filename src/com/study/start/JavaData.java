@@ -6,12 +6,11 @@ import java.util.Scanner;
  * @author lijf1
  */
 public class JavaData {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         System.out.println("请输入一个三位整数:");
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
-        int i = num  % 10;
+        int i = num % 10;
         int j = (num / 10) % 10;
         int m = (num / 10) / 10;
         System.out.println("个位数为:" + i);
@@ -24,21 +23,19 @@ public class JavaData {
         dataChange();
     }
 
-    public static void dataOperation()
-    {
+    public static void dataOperation() {
         int num = 10;
         ++num;
         System.out.println(num);
     }
 
-    public static void dataChange()
-    {
+    public static void dataChange() {
         int num = (getNum(10) > getNum(10)) ? 1 : 2;
         System.out.println(num);
     }
 
-    public static int getNum(int param)
-    {
+    //TODO:功能测试
+    public static int getNum(int param) {
         int num = 10;
         int num1 = 20;
         return param > 10 ? num : num1;
