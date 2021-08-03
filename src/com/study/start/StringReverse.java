@@ -3,12 +3,16 @@ package com.study.start;
 import java.util.Random;
 import java.util.Stack;
 
+/**
+ * @author Jiafeng1.Li
+ */
 public class StringReverse {
     public static void main(String[] args) {
         // 实例一个长度为100000的字符串
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 100000; i++) {
+        int num = 100000;
+        for (int i = 0; i < num; i++) {
             sb.append(random.nextInt(10));
         }
         String test = sb.toString();
@@ -96,7 +100,8 @@ public class StringReverse {
         }
         char[] chars = str.toCharArray();
         int n = chars.length - 1;
-        for (int i = 0; i <= chars.length / 2; i++) {
+        int num = 2;
+        for (int i = 0; i <= chars.length / num; i++) {
             char temp = chars[i];
             chars[i] = chars[n - i];
             chars[n - i] = temp;
