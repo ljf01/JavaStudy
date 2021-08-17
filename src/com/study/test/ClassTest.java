@@ -8,5 +8,8 @@ public class ClassTest {
         Student stu = new Student();
         /*对象在内存中的地址值*/
         System.out.println(stu);
+        stu.name();
+        stu.age();
+        stu.address();
     }
 }
