@@ -1,6 +1,7 @@
 package com.study.test;
-
 import com.study.classdemo.Car;
+
+import java.util.Random;
 
 /**
  * com.study.test
@@ -21,5 +22,6 @@ public class CarTest {
         CarTools tool = new CarTools();
         Car car11 = tool.getCar();
         car11.toString(car11);
+        System.out.println("随机数" + new Random().nextInt(100));
     }
 }
