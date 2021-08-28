@@ -1,4 +1,4 @@
-package com.study.Jframe;
+package com.study.gameshitou;
 
 import javax.swing.*;
 
