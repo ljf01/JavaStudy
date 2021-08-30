@@ -4,8 +4,7 @@ package com.study.start;
 public class ArrayTest {
     public static void main(String[] args) {
         int[] array = {10, 12, 14, 15, 16, 18, 19, 33, 55, 77, 88};
-        // int[] arr = new int[] {33, 66, 77, 88, 4, 55, 99, 32};
-        // int[] array1 = new int[10];
+
         int num = 2;
         for (int i = 0; i < array.length / num; i++) {
             int temp = array[i];
