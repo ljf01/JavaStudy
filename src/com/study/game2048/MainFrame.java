@@ -1,17 +1,21 @@
 package com.study.game2048;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-/** com.study.game2048 @Author: JF LI @Date: 2021/8/28 12:55 @Version v1.0 */
-public class MainFrame extends JFrame implements KeyListener {
+/**
+ * com.study.game2048 @Author: JF LI @Date: 2021/8/28 12:55 @Version v1.0
+ */
+public class MainFrame extends JFrame implements KeyListener, ActionListener {
     static int[][] imgArray =
-            new int[][] {
-                {0, 2, 2, 4},
-                {2, 0, 8, 0},
-                {0, 16, 16, 0},
-                {0, 32, 0, 16}
+            new int[][]{
+                    {0, 2, 2, 4},
+                    {2, 0, 8, 0},
+                    {0, 16, 16, 0},
+                    {0, 32, 0, 16}
             };
     // 首次生成随机数
 
@@ -24,7 +28,9 @@ public class MainFrame extends JFrame implements KeyListener {
         setVisible(true);
     }
 
-    /** 此方法是用于窗体初始化的 */
+    /**
+     * 此方法是用于窗体初始化的
+     */
     public void initFrame() {
         setTitle("2048");
         setSize(520, 550);
@@ -35,7 +41,9 @@ public class MainFrame extends JFrame implements KeyListener {
         setLayout(null);
     }
 
-    /** 此方法用于绘制页面 */
+    /**
+     * 此方法用于绘制页面
+     */
     public void createView() {
         // 移除界面内容
         getContentPane().removeAll();
@@ -51,6 +59,18 @@ public class MainFrame extends JFrame implements KeyListener {
                 getContentPane().add(backgroundLabel);
             }
         }
+        //设置一个按钮
+        JButton jbt = new JButton("页面重置");
+        jbt.setBounds(50, 50, 50, 50);
+
+        jbt.setBorderPainted(false);
+        //消除边框
+        jbt.setContentAreaFilled(false);
+        //消除内容域,即中间的一块
+        jbt.setIcon(new ImageIcon("src/com/study/image/2048img/reverse1.png"));
+        jbt.addActionListener(this);
+        getContentPane().add(jbt);
+
         // 设置背景图片
         // 设置背景图
         JLabel backImg = new JLabel(new ImageIcon("src/com/study/image/2048img/backgroup.png"));
@@ -60,11 +80,16 @@ public class MainFrame extends JFrame implements KeyListener {
         getContentPane().repaint();
     }
 
-    /** 无法监听到上下左右的按键 */
+    /**
+     * 无法监听到上下左右的按键
+     */
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
-    /** 键盘被按下时，所触发的方法，识别上下左右按键 */
+    /**
+     * 键盘被按下时，所触发的方法，识别上下左右按键
+     */
     @SuppressWarnings("AlibabaUndefineMagicConstant")
     @Override
     public void keyPressed(KeyEvent e) {
@@ -83,11 +108,16 @@ public class MainFrame extends JFrame implements KeyListener {
         }
     }
 
-    /** 按键松开时触发的方法 */
+    /**
+     * 按键松开时触发的方法
+     */
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    }
 
-    /** 左移动 */
+    /**
+     * 左移动
+     */
     @SuppressWarnings("AlibabaUndefineMagicConstant")
     public void left() {
         int[][] nums = new int[4][4];
@@ -115,7 +145,9 @@ public class MainFrame extends JFrame implements KeyListener {
         createView();
     }
 
-    /** 右移动 */
+    /**
+     * 右移动
+     */
     @SuppressWarnings("AlibabaUndefineMagicConstant")
     public void right() {
         int[][] nums = new int[4][4];
@@ -172,7 +204,9 @@ public class MainFrame extends JFrame implements KeyListener {
         createView();
     }
 
-    /** 向下移动 */
+    /**
+     * 向下移动
+     */
     @SuppressWarnings("AlibabaUndefineMagicConstant")
     public void below() {
         int[][] nums = new int[4][4];
@@ -200,5 +234,25 @@ public class MainFrame extends JFrame implements KeyListener {
         }
         // 重新绘制界面
         createView();
+    }
+
+    /**
+     * 改变页面布局
+     */
+    public void ChangeGame() {
+        int[][] newArr = new int[4][4];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                newArr[j][3 - i] = imgArray[i][j];
+            }
+        }
+        imgArray = newArr;
+        createView();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("有SB~~~~~~~");
+
     }
 }
