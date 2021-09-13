@@ -16,5 +16,8 @@ public class ReflectDemo1 {
         //创建对象
         Object per = constructor.newInstance("李四","合肥",55);
         System.out.println(per);
+        //空参构造
+        Object o  = person.newInstance();
+        System.out.println(o);
     }
 }
