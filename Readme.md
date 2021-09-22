@@ -51,6 +51,9 @@
 * Constructor：构造方法
     * 创建对象：T newInstance(Object... initrans);
     * 如果使用空参数构造函数，操作可以简化，Class对象的newInstance方法
+* Method:方法对象
+    * 执行方法:
+        * Object invoke(Object obj,Object... args)
 ##### java代码在计算机中经历的阶段:三个阶段
 * Source 源代码阶段 -> Class类对象阶段 -> Runtime运行时阶段
   ![](src/file/image/javaThree.jpg)

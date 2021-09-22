@@ -49,4 +49,10 @@ public class Person {
                 ", age=" + age +
                 '}';
     }
+    public void eat(){
+        System.out.println("吃饭");
+    }
+    public  void eat(String temp){
+        System.out.println("吃"+temp);
+    }
 }

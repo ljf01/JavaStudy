@@ -3,6 +3,7 @@ package com.javawebstudy;
 import com.javawebstudy.classes.Person;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * @author Jiafeng1.Li
@@ -33,11 +34,32 @@ public class ReflectDemo{
             }
             Field d = personClass.getDeclaredField("address");
             //忽略访问权限修饰符的安全检查
-            //暴力反射
             d.setAccessible(true);
+            //暴力反射
             Object j = d.get(p);
             System.out.println(j);
         } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        //++++++++++
+        try {
+            Method mtd = personClass.getMethod("eat");
+            Person per = new Person();
+            mtd.invoke(per);
+            Method mtds = personClass.getMethod("eat",String.class);
+            mtds.invoke(per,"香蕉");
+            System.out.println("==========");
+            Method[] methods = personClass.getMethods();
+            for(Method method : methods){
+                System.out.println(method);
+
+                //暴力反射：method.setAccessible(true)
+
+                System.out.println("===:"+method.getName());
+            }
+            //获取类名
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
