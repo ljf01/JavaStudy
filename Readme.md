@@ -65,6 +65,52 @@
             3. 使用反射技术来加载文件进内存;
             4. 创建对象;
             5. 执行方法;
+## 注解:
+   * JDK1.5之后的新特性;
+   * 说明程序的;
+   * 作用分类:
+     1. 编写文档;
+     2. 代码分析;
+     3. 编译检查;
+   * JDK中预定义的一些注解:
+     1. @Override:检测被该注解标注的方式是否是继承自父类（接口）的;
+     2. @Deprecated:该注解给标注的内容，表示已过时
+     3. @SuppressWarnings:压制警告
+        * 一般传递参all:@SuppressWarnings("all")
+   * 自定义注解:
+        * 格式：
+            1. 元注解
+            2. public @interface 注解名称{}
+        * 本质:注解本质就是一个接口，该接口默认继承Annotation类
+        ~~~ java
+        public interface com.javawebstudy.Anno.MyAnno extends java.lang.annotation.Annotation{}
+        ~~~
+        * 属性：接口中的抽象方法
+           1. 要求：
+              * 属性的返回值类型：
+                 * 基本数据类型
+                 * String
+                 * 枚举
+                 * 注解
+                 * 以上类型的数组
+             * 定义了属性，在使用时需要给属性赋值
+                * 如果定义属性时，使用default关键字给属性默认初始化值，则使用注解时，可以不进行属性的赋值;
+                * 如果只有一个属性需要赋值，并且属性的名称是value，则value可以省略，直接定义值即可
+        * 元注解:用于描述注解的注解
+            * @Target：描述注解能够作用的位置;
+              * ElementType取值：
+                * TYPE:可以作用与类上;
+                * METHOD:可以作用于方法上;
+                * FIELD:可以作用于成员变量上;
+            * @Retention：描述注解能被保存的阶段;
+                * @Retention(RetentionPolicy.RUNTIME):当前被描述的注解，会保留到class字节码文件中，并被jvm读取到 
+            * @Documented：描述注解是否被抽取到api文档中
+            * @Inherited：描述注解是否被子类继承
+   * 在程序使用（解析）注解:获取注解中定义的属性值
+        * 获取注解定义的位置的对象（Class、Method、Field）
+        * 获取指定的注解：
+            * getAnnotation(Class)
+        * 调用注解中的抽象方法
 ##### java代码在计算机中经历的阶段:三个阶段
 * Source 源代码阶段 -> Class类对象阶段 -> Runtime运行时阶段
   ![](src/file/image/javaThree.jpg)
