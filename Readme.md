@@ -110,7 +110,66 @@
         * 获取注解定义的位置的对象（Class、Method、Field）
         * 获取指定的注解：
             * getAnnotation(Class)
-        * 调用注解中的抽象方法
+        * 调用注解中的抽象方法获取配置的属性值
+   * 小结：
+        1. 以后大多数时候，我们会使用注解，而不是自定义注解;
+        2. 注解给谁用？
+            * 编辑器
+            * 给解析程序用
+        3. 注解不是程序的一部分，算是一个标签
+   
+## JavaWeb课程介绍
+1. 什么事JavaWeb？
+   * 使用Java语言开发互联网项目。
+2. 课程介绍：
+   * 数据库
+   * 网页前端
+   * web核心技术
+   * 旅游管理系统
+### Mysql数据库知识学习
+   1. 数据库的基本概念
+   2. Mysql数据库软件
+   3. Sql
+#### 数据库的基本概念
+   1. 数据库的英文单词:DataBase 简称 DB
+   2. 什么是数据库？
+      * 用于存储和管理数据的仓库。
+   3. 数据库的特点
+      * 持久化存储数据的，其实数据库就是一个文件系统；
+      * 方便存储和管理数据
+      * 使用统一的方式操作数据库-SQL
+   4. 常见的数据库软件
+#### Mysql数据库软件
+   1. Mysql服务启动
+      * 手动
+      * cmd->services.msc打开服务的窗口
+      * 使用管理员打开cmd
+        * net start mysql: 启动mysql的服务
+        * net stop mysql:关闭mysql服务
+   2. Mysql登录
+        * mysql -uroot -p密码
+        * mysql -hip -uroot -p连接目标的密码
+        * mysql --host=ip --user=root --password=连接目标的密码
+   3. Mysql退出
+        * exit
+        * quit
+   4. Mysql目录结构
+        * mysql的安装目录
+            * 配置文件：my.ini
+        * mysql的数据目录
+            * 数据库：文件夹
+            * 表:文件
+            * 数据：数据
+   #### SQL
+   1. 什么是SQL？
+       Structured Query Language:结构化查询语言
+       其实就是定义了操作所有关系型数据库的规则，每一种数据库操作的方式存在不一样的地方
+   2. SQL通用写法
+
+
+
+
+
 ##### java代码在计算机中经历的阶段:三个阶段
 * Source 源代码阶段 -> Class类对象阶段 -> Runtime运行时阶段
   ![](src/file/image/javaThree.jpg)
