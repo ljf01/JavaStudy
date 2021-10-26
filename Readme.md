@@ -199,17 +199,60 @@
                 * use 数据库名称；
    2. 操作表
         1. C(Create):创建
+            1. 语法:
+               create table 表名(列名1 数据类型1,列名2 数据类型2);
+            2. 数据库类型：
+                * int :整数类型;
+                * double: 小数类型;score double(5,2)
+                * date:日期，只包含年月日，yyyy-MM-dd
+                * datetime:日期，包含年月日时分秒 yyyy-MM-dd HH:mm:ss
+                * timestamp:时间戳类型 包含年月日时分秒 yyyy-MM-dd HH:mm:ss
+                * varchar: 字符串 name varchar(20);需要指定字符的最大长度、
+            3. 复制表:
+                create table 表名2 like 表名1;
         2. R(Retrieve):查询
             * 查询某个数据库中所有的表名称
                 * show tables;
             * 查询表结构
                 desc 表名;
         3. U(Update):修改
+            * 修改表名:alter table 表名 rename to 新名称;
+            * 修改表的字符集:alter table 表名 character set 字符集名称;
+            * 添加列:alter table 表名 add 列名 数据类型;
+            * 修改列名称 类型:alter table 表名 change 列名 新列别 新数据类型; alter table 表名 modify 列名 新数据类型;
+            * 删除列:alter table stu drop 列名;
         4. D(Delete):删除
+            * drop table 表名；
+            * drop table if exists 表名；
 
-
-
-
+#### DML: 增删改表中数据
+1. 添加数据:insert into 表名(字段1,字段2) values (值1,值2); insert into 表名 values(值1,值2);
+2. 删除数据:delete from 表名 where 字段 = “”;
+   * 如果要删除所有记录:
+        * delete from 表名;效率比较低
+        * truncate table 表名;先删除表，在创建一张一样的表;效率更高
+3. 修改数据:update 表名 set 字段 = “” where  字段1 = “”;
+#### DQL:查询表中的记录
+* select * from 表名;
+* select 字段名称 from 表名称 where 查询条件 group by 分组字段 having 分组之后的条件 order by 排序 limit 分页限定;
+* 计算值相加:如果有null则计算结果全是null可以使用IFNULL(字段,0);
+* 条件查询 WHERE 子句查询;
+* 排序查询:ORDER BY,ASC DESC
+* 聚合函数:count(),sum(),max(),min()，avg()平均值等
+* 分组查询:GROUP BY;having为分组之后的条件使用语句;where在分组之前限定;where后不可使用聚合函数,having后可用聚合函数;
+* 分页查询:LIMIT 
+  * 约束:主键primary key，非空not null，唯一unique，外键foreign key
+  * 非空约束：
+    * 添加约束：create table 表名(id int ,name varchar(20) not null);
+    * 存在之后添加非空约束:alter  table 表名 modify 字段名 数据类型 not null;
+    * 删除非空约束: alter table 表名 modify 字段名 数据类型;
+  * 唯一约束:
+    * 添加唯一约束:create table 表名 (id int ,phone_number varchar(20) unique);
+    * 创建表之后添加唯一约束:alter  table 表名  modify 字段名 数据属性 unique;
+    * 删除唯一约束:alter table 表名 drop index 字段名;
+* 多表之间的关系
+* 范式
+* 
 
 ##### java代码在计算机中经历的阶段:三个阶段
 * Source 源代码阶段 -> Class类对象阶段 -> Runtime运行时阶段
