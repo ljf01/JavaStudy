@@ -250,10 +250,53 @@
     * 添加唯一约束:create table 表名 (id int ,phone_number varchar(20) unique);
     * 创建表之后添加唯一约束:alter  table 表名  modify 字段名 数据属性 unique;
     * 删除唯一约束:alter table 表名 drop index 字段名;
-* 多表之间的关系
-* 范式
-* 
-
+  * 主键约束:
+    * 创建表时添加主键:CREATE TABLE 表名 (id int primary key,name varchar(20));
+    * 创建表之后添加主键约束:ALTER TABLE 表名 modify id int primary key;
+    * 删除主键:ALTER TABLE 表名 DROP PRIMARY KEY;
+  * 自动增长:
+    * CREATE TABLE 表名(id int primary key auto_increment,name varchar(20));
+    * alter table 表名 modify id int auto_increment;
+    * alter table 表名 modify id int;
+  * 外键约束:foreign key;
+    * 创建:create table 表名(id int primary key auto_increment, dep_id int constraint 名称 foreign key (本表字段) references 表(外键表字段));
+    * 删除:alter table 表名 drop foreign key 外键名称;
+    * 添加外键:alter table 表名 add constraint 外键名称 foreign key (本表字段名) references 表(外键表主键字段名);
+    * 级联操作:
+      * 添加级联的操作:alter table 表名 add constraint 外键名称 foreign key (外键字段名称) references 主表名称(主表列名称) on update cascade on delete cascade;
+      * 分类:
+        * 级联更新:ON UPDATE CASCADE
+        * 级联删除:ON DELETE CASCADE
+## 数据库的设计
+  * 多表之间的关系
+    * 分类:
+      * 一对一:人与身份证
+      * 一对多:部门与员工
+      * 多对多:学生与课程
+    * 实现关系:
+      * 一对多:在多的一方建立外键，指向一的一方的主键;
+      * 多对多:借助第三张表作为中间表，存放两张表之间的关联关系;至少包含两个字段，作为第三张表的外键，指向两张表的主键;
+      * 一对一:可以在任意一方添加唯一外键指向另一方的主键;
+  * 数据库设计的范式(共有六个范式1-5 范式，以及巴斯-科德范式)
+    * 第一范式(1NF):每一列都是不可分割的原子数据项;
+    * 第二范式(2NF):在第一范式的基础上，非码属性必须完全依赖于候选码;在第一范式基础上消除非主属性对主码的部分函数依赖;
+      * 函数依赖:通过A的属性的值可以确定唯一B属性的值，则称B依赖A;如学号依赖姓名;
+      * 完全函数依赖:A依赖B，如果A是一个属性组，则B属性值的确定需要依赖A属性组中所有的属性值;
+      * 部分函数依赖:A依赖B，如果A是一个属性组，则B属性值的确定只需要依赖于A属性组中某一些值即可;
+      * 传递函数依赖:A依赖B，B依赖C，如果通过A属性的值，可以确定唯一B属性的值，在通过B属性的值可以确定唯一C属性值，则称C属性传递依赖A;
+      * 码:如果在一张表中，一个属性或者属性组，被其他所有属性所完全依赖，则称这个属性或属性组为该表的码;
+      * 主属性:码属性组中的所有属性;
+      * 非主属性:除过码属性组的属性;
+    * 第三范式(3NF):在第二范式的基础上，任何非主属性不依赖于其他非主属性;在第二范式的基础上消除传递依赖;
+## 数据库的备份和还原
+  * 命令行:
+    * mysqldump -u用户名 -p密码 数据库名 > 保存的路径
+    * 还原:
+      * 登录数据库
+      * 创建数据库
+      * 使用数据库
+      * 执行文件 -> source 文件路径
+  * 图形化工具:
 ##### java代码在计算机中经历的阶段:三个阶段
 * Source 源代码阶段 -> Class类对象阶段 -> Runtime运行时阶段
   ![](src/file/image/javaThree.jpg)
