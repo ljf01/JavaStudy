@@ -1,9 +1,9 @@
-package com.javase.date;
+package com.javase;
 
 /**
  * @author Jiafeng1.Li
  */
-public class Employee {
+public  class  Employee {
     private  int id ;
     private  String name;
     private  int price;
@@ -37,7 +37,7 @@ public class Employee {
         return price;
     }
 
-    public void setPrice(int price) {
+    public final void  setPrice(int price) {
         this.price = price;
     }
     public void change(int num)

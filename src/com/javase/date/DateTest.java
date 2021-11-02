@@ -3,10 +3,10 @@ package com.javase.date;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
 /**
  * @author Jiafeng1.Li
  */
@@ -62,10 +62,33 @@ public class DateTest {
             }
             if (date3.getDayOfWeek().getValue() == 7){
                 //每周的最后一天输出换行
-                System.out.println("");
+                System.out.println(" ");
             }
             date3 = date3.plusDays(1);
         }
+        ArrayList<String> testList = new ArrayList<>();
+        //提前指定集合的长度
+        testList.ensureCapacity(2);
+        testList.add("test");
+        testList.set(0,"");
+        //删除集合冗余的空间分配
+        testList.trimToSize();
+        System.out.println(testList.get(0));
+        ArrayList<Integer> test = new ArrayList<>();
+        test.add(1);
+        System.out.println(test.get(0));
+        System.out.printf("%s,%.2f","MAX:",max(3.1,5.6,-5,10));
 
     }
+    public static double max(double... values)
+    {
+        double largest = Double.NEGATIVE_INFINITY;
+        for(double v : values) {
+            if(v > largest) {
+                largest = v;
+            }
+        }
+        return largest;
+    }
+
 }
