@@ -1,5 +1,7 @@
 package com.javase.date;
 
+import com.study.classdemo.Employee;
+
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -78,7 +80,12 @@ public class DateTest {
         test.add(1);
         System.out.println(test.get(0));
         System.out.printf("%s,%.2f","MAX:",max(3.1,5.6,-5,10));
-
+        System.out.println();
+        System.out.println("测试Class");
+        Employee e = new Employee();
+        System.out.println(e);
+        System.out.println(e.getClass());
+        System.out.println(e.getClass().getName());
     }
     public static double max(double... values)
     {
