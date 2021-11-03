@@ -3,6 +3,7 @@ package com.javase.date;
 import com.study.classdemo.Employee;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -93,7 +94,16 @@ public class DateTest {
         a = (Array[]) goodCopyOf(a,20);
         assert a != null;
         System.out.println("a.length:" + a.length);
-
+        //测试invoke
+        System.out.println("invoke测试");
+        try {
+            Method square = DateTest.class.getMethod("square",double.class);
+            Method sqrt = Math.class.getMethod("sqrt", double.class);
+            printTable(1,10,10,sqrt);
+            printTable(1,10,10,square);
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        }
     }
     public static double max(double... values)
     {
@@ -121,5 +131,24 @@ public class DateTest {
         System.arraycopy(a,0,newArray,0,Math.min(length,newLength));
         return newArray;
     }
-
+    //测试invoke调用
+    public static double square(double x)
+    {
+        return x * x;
+    }
+    public static void printTable(double from ,double to,int n, Method f)  {
+        System.out.println(f);
+        double dx = (to-from)/(n-1);
+        for(double x = from ;x<=to;x+=dx)
+        {
+            try
+            {
+                double y = (Double)f.invoke(null,x);
+                System.out.printf("%10.4f | %10.4f%n",x,y);
+            }catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
 }

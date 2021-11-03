@@ -14,13 +14,14 @@ public class InOut {
     {
         try {
             //读取文件
-            Scanner sc = new Scanner(Paths.get("D:\\javase\\javase.txt"), StandardCharsets.UTF_8);
+            Scanner sc = new Scanner(Paths.get("D:\\javase\\javase.txt"), String.valueOf(StandardCharsets.UTF_8));
             String temp = sc.nextLine();
             System.out.println(temp);
             //写入文件
-            PrintWriter pr = new PrintWriter("D:\\javase\\Test.txt", StandardCharsets.UTF_8);
-            pr.print("TEST_TEST_TEST");
-            pr.close();
+            try (PrintWriter pr = new PrintWriter("D:\\javase\\Test.txt", String.valueOf(StandardCharsets.UTF_8))) {
+                pr.print("TEST_TEST_TEST");
+                pr.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
