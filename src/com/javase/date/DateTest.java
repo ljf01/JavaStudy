@@ -2,6 +2,7 @@ package com.javase.date;
 
 import com.study.classdemo.Employee;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -86,6 +87,13 @@ public class DateTest {
         System.out.println(e);
         System.out.println(e.getClass());
         System.out.println(e.getClass().getName());
+        System.out.println("测试自动扩容方法");
+        Array[] a = new Array[10];
+        System.out.println("a.length:" + a.length);
+        a = (Array[]) goodCopyOf(a,20);
+        assert a != null;
+        System.out.println("a.length:" + a.length);
+
     }
     public static double max(double... values)
     {
@@ -96,6 +104,22 @@ public class DateTest {
             }
         }
         return largest;
+    }
+
+    /*编写通用的自动扩容数组的方法*/
+
+    public static Object goodCopyOf(Object a,int newLength)
+    {
+        Class<?> cl = a.getClass();
+        if(!cl.isArray())
+        {
+            return null;
+        }
+        Class<?> componentType = cl.getComponentType();
+        int length = Array.getLength(a);
+        Object newArray = Array.newInstance(componentType,newLength);
+        System.arraycopy(a,0,newArray,0,Math.min(length,newLength));
+        return newArray;
     }
 
 }
