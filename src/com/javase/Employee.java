@@ -3,7 +3,7 @@ package com.javase;
 /**
  * @author Jiafeng1.Li
  */
-public  class  Employee {
+public  class  Employee implements  Comparable<Employee> {
     private  int id ;
     private  String name;
     private  int price;
@@ -52,5 +52,10 @@ public  class  Employee {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Employee o) {
+        return Double.compare(price, ((Employee) o).price);
     }
 }

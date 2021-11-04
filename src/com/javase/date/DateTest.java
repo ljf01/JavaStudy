@@ -1,21 +1,20 @@
 package com.javase.date;
 
-import com.study.classdemo.Employee;
+import com.javase.Employee;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
+
 /**
  * @author Jiafeng1.Li
  */
 public class DateTest {
     public static void main(String[] args) {
+        Comparable<Employee> interfaceTest =  new Employee();
         Date date1 = new Date();
         System.out.println(date1);
         //日期格式化
@@ -104,6 +103,19 @@ public class DateTest {
         } catch (NoSuchMethodException ex) {
             ex.printStackTrace();
         }
+        System.out.println("接口interface实现");
+
+        System.out.println("排序");
+        Employee [ ] staff = new Employee [ 3 ] ;
+        staff [ 0 ] = new Employee (1,"Harry Hacker", 35000 ) ;
+        staff [ 1 ] = new Employee ( 2," Carl Cracker " , 75000 ) ;
+        staff [ 2 ] = new Employee ( 3," Tony Tester " , 38000 ) ;
+        Arrays.sort(staff);
+        for (Employee e1 : staff) {
+            System.out.println(e1.getName()+":"+e1.getPrice());
+        }
+        System.out.println();
+        System.out.println();
     }
     public static double max(double... values)
     {
