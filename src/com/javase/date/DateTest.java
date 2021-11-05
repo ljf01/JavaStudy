@@ -2,17 +2,20 @@ package com.javase.date;
 
 import com.javase.Employee;
 
+import javax.swing.Timer;
+import  java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
-
 /**
  * @author Jiafeng1.Li
  */
-public class DateTest {
+public class DateTest implements ActionListener {
     public static void main(String[] args) {
         Comparable<Employee> interfaceTest =  new Employee();
         Date date1 = new Date();
@@ -115,7 +118,18 @@ public class DateTest {
             System.out.println(e1.getName()+":"+e1.getPrice());
         }
         System.out.println();
-        System.out.println();
+        System.out.println("隔断时间打印数据");
+        ActionListener listener = new DateTest();
+        Timer timer = new Timer(1000,listener);
+        timer.start();//每秒执行一次listener
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println("delay60秒");
+        //发出一声响铃
+        Toolkit.getDefaultToolkit().beep();
     }
     public static double max(double... values)
     {
@@ -162,5 +176,13 @@ public class DateTest {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String strDateFormat = "yyyy-MM-dd HH:mm:ss";
+        SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
+        System.out.println("This print time is " + sdf.format(new Date()));
+        Toolkit.getDefaultToolkit().beep();
     }
 }
