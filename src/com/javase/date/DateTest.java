@@ -128,8 +128,15 @@ public class DateTest implements ActionListener {
             ex.printStackTrace();
         }
         System.out.println("delay60秒");
+
         //发出一声响铃
         Toolkit.getDefaultToolkit().beep();
+
+        System.out.println("clone");
+        Employee[] emp1 = staff.clone();
+        System.out.println(emp1[0].getName());
+        Employee em = new Employee();
+        Employee em1 = em.clone();
     }
     public static double max(double... values)
     {

@@ -3,7 +3,7 @@ package com.javase;
 /**
  * @author Jiafeng1.Li
  */
-public  class  Employee implements  Comparable<Employee> {
+public  class  Employee implements  Comparable<Employee>,Cloneable {
     private  int id ;
     private  String name;
     private  int price;
@@ -57,5 +57,15 @@ public  class  Employee implements  Comparable<Employee> {
     @Override
     public int compareTo(Employee o) {
         return Double.compare(price, ((Employee) o).price);
+    }
+
+    @Override
+    public Employee clone() {
+        try {
+            // TODO: 复制此处的可变状态，这样此克隆就不能更改初始克隆的内部
+            return (Employee) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
