@@ -12,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
+
+import static jdk.nashorn.internal.objects.NativeMath.max;
+
 /**
  * @author Jiafeng1.Li
  */
@@ -96,6 +99,7 @@ public class DateTest implements ActionListener {
         a = (Array[]) goodCopyOf(a,20);
         assert a != null;
         System.out.println("a.length:" + a.length);
+        System.out.println("lambda");
         //测试invoke
         System.out.println("invoke测试");
         try {
@@ -121,6 +125,8 @@ public class DateTest implements ActionListener {
         System.out.println("隔断时间打印数据");
         ActionListener listener = new DateTest();
         Timer timer = new Timer(1000,listener);
+        Timer time = new Timer(1000, System.out::println);
+
         timer.start();//每秒执行一次listener
         try {
             Thread.sleep(10000);
@@ -132,21 +138,12 @@ public class DateTest implements ActionListener {
         //发出一声响铃
         Toolkit.getDefaultToolkit().beep();
 
+        System.out.println();
         System.out.println("clone");
         Employee[] emp1 = staff.clone();
         System.out.println(emp1[0].getName());
         Employee em = new Employee();
         Employee em1 = em.clone();
-    }
-    public static double max(double... values)
-    {
-        double largest = Double.NEGATIVE_INFINITY;
-        for(double v : values) {
-            if(v > largest) {
-                largest = v;
-            }
-        }
-        return largest;
     }
 
     /*编写通用的自动扩容数组的方法*/
