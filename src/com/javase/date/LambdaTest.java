@@ -1,6 +1,7 @@
 package com.javase.date;
 
-import java.util.regex.Matcher;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * com.javase.date
@@ -18,6 +19,9 @@ public class LambdaTest {
         MathOperation multiplication = (int a,int b) -> {return a * b;};
         MathOperation division = (int a,int b) -> a / b;
         System.out.println("10 + 5: " + lambdaTest.operate(10,5,addition));
+        Supplier<String> stringSupplier = ()->"OK";
+        Supplier<String> supplier = String::new;
+        Predicate<Integer> positiveNumber = i -> i > 0;
     }
     interface MathOperation {
         int operation(int a, int b);
