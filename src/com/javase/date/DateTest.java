@@ -3,22 +3,21 @@ package com.javase.date;
 import com.javase.Employee;
 
 import javax.swing.Timer;
-import  java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.function.BiFunction;
 
 import static jdk.nashorn.internal.objects.NativeMath.max;
 
 /**
  * @author Jiafeng1.Li
  */
-public class DateTest implements ActionListener {
+public class DateTest {
     public static void main(String[] args) {
         Comparable<Employee> interfaceTest =  new Employee();
         Date date1 = new Date();
@@ -118,16 +117,35 @@ public class DateTest implements ActionListener {
         staff [ 1 ] = new Employee ( 2," Carl Cracker " , 75000 ) ;
         staff [ 2 ] = new Employee ( 3," Tony Tester " , 38000 ) ;
         Arrays.sort(staff);
+        String[] arrayList = new String[] {"tes2t","222","aaaa"};
+        Arrays.sort(arrayList);
+        Integer[] numList = new Integer[]{12,14,5,9,65,88};
+        Arrays.sort(numList,new Comparator<Integer>() {
+            @Override
+            public int compare(Integer a, Integer b) {
+                return b-a;
+            }
+        });
+        System.out.println(Arrays.toString(numList));
+        Arrays.sort(numList);
+
+        BiFunction<String,String,Integer> bu = (first,second)-> first.length() - second.length();
+        System.out.println("BiFunction:");
+        System.out.println(Arrays.toString(numList));
+        System.out.println("array===========");
+        System.out.println(Arrays.toString(arrayList));
         for (Employee e1 : staff) {
             System.out.println(e1.getName()+":"+e1.getPrice());
         }
         System.out.println();
         System.out.println("隔断时间打印数据");
-        ActionListener listener = new DateTest();
-        Timer timer = new Timer(1000,listener);
-        Timer time = new Timer(1000, System.out::println);
+        //ActionListener listener = new DateTest();
+        //Timer timer = new Timer(1000,listener);
+        Timer time = new Timer(1000, tempTest -> {
+            System.out.println("This time is "+ new Date());
+        });
 
-        timer.start();//每秒执行一次listener
+        time.start();//每秒执行一次listener
         try {
             Thread.sleep(10000);
         } catch (InterruptedException ex) {
@@ -182,11 +200,11 @@ public class DateTest implements ActionListener {
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String strDateFormat = "yyyy-MM-dd HH:mm:ss";
-        SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
-        System.out.println("This print time is " + sdf.format(new Date()));
-        Toolkit.getDefaultToolkit().beep();
-    }
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        String strDateFormat = "yyyy-MM-dd HH:mm:ss";
+//        SimpleDateFormat sdf = new SimpleDateFormat(strDateFormat);
+//        System.out.println("This print time is " + sdf.format(new Date()));
+//        Toolkit.getDefaultToolkit().beep();
+//    }
 }

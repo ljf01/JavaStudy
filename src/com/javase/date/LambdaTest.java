@@ -1,7 +1,9 @@
 package com.javase.date;
 
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * com.javase.date
@@ -14,14 +16,21 @@ public class LambdaTest {
     public static void main(String[] args)
     {
         LambdaTest lambdaTest = new LambdaTest();
+
         MathOperation addition = Integer::sum;
-        MathOperation subtraction = (a,b) -> a-b;
-        MathOperation multiplication = (int a,int b) -> {return a * b;};
-        MathOperation division = (int a,int b) -> a / b;
+
         System.out.println("10 + 5: " + lambdaTest.operate(10,5,addition));
-        Supplier<String> stringSupplier = ()->"OK";
-        Supplier<String> supplier = String::new;
-        Predicate<Integer> positiveNumber = i -> i > 0;
+
+        //删除集合中的所有指定的数据
+        ArrayList<String> testList = new ArrayList<>();
+        testList.add("test");
+        testList.add("");
+        testList.add("com");
+        testList.removeIf(e -> Objects.equals(e, "test"));
+        System.out.println(Arrays.toString(new ArrayList[]{testList}));
+        //流处理
+        List<String> strList = Arrays.asList("a", "c", "b");
+        strList.stream().sorted(String::compareToIgnoreCase).forEach(s -> System.out.println("=="+s));
     }
     interface MathOperation {
         int operation(int a, int b);
@@ -30,4 +39,5 @@ public class LambdaTest {
     {
         return mathOperation.operation(a,b);
     }
+
 }
