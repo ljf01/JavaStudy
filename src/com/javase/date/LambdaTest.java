@@ -31,6 +31,7 @@ public class LambdaTest {
         //流处理
         List<String> strList = Arrays.asList("a", "c", "b");
         strList.stream().sorted(String::compareToIgnoreCase).forEach(s -> System.out.println("=="+s));
+        System.out.println("Fibonacci-30:"+Fibonacci(10));
     }
     interface MathOperation {
         int operation(int a, int b);
@@ -39,5 +40,13 @@ public class LambdaTest {
     {
         return mathOperation.operation(a,b);
     }
-
+    public static int Fibonacci(int i) {
+        if(i <= 0) {
+            return 0;
+        }
+        if(i == 1 || i == 2) {
+            return 1;
+        }
+        return Fibonacci(i -2) + Fibonacci(i-1);
+    }
 }
